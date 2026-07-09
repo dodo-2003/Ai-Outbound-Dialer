@@ -144,6 +144,22 @@
   .bar-val { font-variant-numeric: tabular-nums; text-align: right; }
   .bars-gap { height: 10px; }
 
+  /* ─── Cost anatomy ─── */
+  .cost-bar { display: flex; height: 26px; margin: 6px 0 14px; }
+  .cost-seg { width: 0; transition: width 1s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .cost-legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px 18px; font-size: 11.5px; color: var(--ink-soft); }
+  .cost-legend span { display: flex; align-items: center; gap: 8px; }
+  .cost-legend i { width: 10px; height: 10px; flex-shrink: 0; }
+  .cost-total { font-size: 11.5px; color: var(--ink-mute); margin-top: 12px; }
+
+  /* ─── Network map ─── */
+  .map-panel svg { width: 100%; height: auto; display: block; }
+  .map-caption { font-size: 10.5px; color: var(--ink-mute); margin-top: 12px; padding-left: 2px; }
+  .pulse { transform-origin: center; transform-box: fill-box; animation: pulse 2.6s ease-out infinite; }
+  @keyframes pulse { 0% { transform: scale(0.35); opacity: 0.65; } 70% { transform: scale(1.7); opacity: 0; } 100% { opacity: 0; } }
+  .arc { stroke-dasharray: 4 5; animation: dashmove 1.3s linear infinite; }
+  @keyframes dashmove { to { stroke-dashoffset: -9; } }
+
   /* ─── Stack rows ─── */
   .row { display: grid; grid-template-columns: 150px 1fr; gap: 40px; margin-bottom: 42px; }
   .row:last-child { margin-bottom: 0; }
@@ -185,8 +201,8 @@
 
   @media (prefers-reduced-motion: reduce) {
     .rv { opacity: 1; transform: none; transition: none; }
-    .sweep, .blip { animation: none; }
-    .bar-fill { transition: none; }
+    .sweep, .blip, .pulse, .arc { animation: none; }
+    .bar-fill, .cost-seg { transition: none; }
   }
 
   @media (max-width: 640px) {
@@ -218,7 +234,7 @@
     <nav>
       <a href="#system">System</a>
       <a href="#results">Results</a>
-      <a href="#engineering">Engineering</a>
+      <a href="#process">Process</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -314,6 +330,52 @@
     <div class="prose">
       <p><strong>Measured:</strong> ~$0.25 per connected call against the client&rsquo;s $0.89&ndash;1.11 human baseline, at ~1,000 dials an hour on 10 concurrent lines. <strong>Modeled at full scale:</strong> ~28,000 connects a month — 12.5&times; the human team — for roughly the cost of one caller&rsquo;s salary.</p>
     </div>
+
+    <div class="widget" id="cost-anatomy">
+      <div class="call-log" style="margin-bottom:14px"><div class="hd"><span>Cost anatomy — one minute of AI conversation</span><span>$0.124 / min all-in</span></div></div>
+      <div class="cost-bar">
+        <div class="cost-seg" data-w="40%" style="background:#1c1c1c" title="Vapi platform $0.05"></div>
+        <div class="cost-seg" data-w="32%" style="background:#2b2be6" title="ElevenLabs voice $0.04"></div>
+        <div class="cost-seg" data-w="11%" style="background:#8a8a86" title="Twilio telephony $0.014"></div>
+        <div class="cost-seg" data-w="8.5%" style="background:#b9b8b3" title="Deepgram STT $0.01"></div>
+        <div class="cost-seg" data-w="8.5%" style="background:#d8d7d4" title="Claude reasoning $0.01"></div>
+      </div>
+      <div class="cost-legend">
+        <span><i style="background:#1c1c1c"></i>Vapi platform — $0.05</span>
+        <span><i style="background:#2b2be6"></i>ElevenLabs voice — $0.04</span>
+        <span><i style="background:#8a8a86"></i>Twilio telephony — $0.014</span>
+        <span><i style="background:#b9b8b3"></i>Deepgram STT — $0.01</span>
+        <span><i style="background:#d8d7d4"></i>Claude reasoning — $0.01</span>
+      </div>
+      <div class="cost-total">Every call&rsquo;s cost is itemized like this in the client&rsquo;s dashboard — ~$0.04 per dial attempt, ~$0.25 per connected call.</div>
+    </div>
+    <div class="caption">Where each minute&rsquo;s money goes — the numbers behind the $0.25 connect</div>
+  </section>
+
+  <section class="block" id="map">
+    <div class="sec-label">Built Remote, Deployed US</div>
+    <div class="map-panel widget">
+      <svg viewBox="0 0 660 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Network map — built in Lahore, deployed for a US client">
+        <g stroke="#efeeeb" stroke-width="1">
+          <line x1="80" y1="18" x2="80" y2="202"/><line x1="160" y1="18" x2="160" y2="202"/>
+          <line x1="240" y1="18" x2="240" y2="202"/><line x1="320" y1="18" x2="320" y2="202"/>
+          <line x1="400" y1="18" x2="400" y2="202"/><line x1="480" y1="18" x2="480" y2="202"/>
+          <line x1="560" y1="18" x2="560" y2="202"/>
+          <line x1="20" y1="55" x2="640" y2="55"/><line x1="20" y1="110" x2="640" y2="110"/>
+          <line x1="20" y1="165" x2="640" y2="165"/>
+        </g>
+        <path class="arc" d="M 588 107 Q 340 16 108 77" fill="none" stroke="#1c1c1c" stroke-width="1"/>
+        <circle class="pulse" cx="108" cy="77" r="14" fill="none" stroke="#1c1c1c" stroke-width="1"/>
+        <circle cx="108" cy="77" r="4" fill="#1c1c1c"/>
+        <text x="108" y="103" font-family="Inter, sans-serif" font-size="10.5" fill="#1c1c1c" text-anchor="middle">US client — Texas</text>
+        <text x="108" y="117" font-family="Inter, sans-serif" font-size="9" fill="#6f6f6f" text-anchor="middle">dialing all US timezones</text>
+        <circle class="pulse" cx="588" cy="107" r="16" fill="none" stroke="#2b2be6" stroke-width="1" style="animation-delay: .45s"/>
+        <circle cx="588" cy="107" r="5" fill="#2b2be6"/>
+        <text x="588" y="84" font-family="Inter, sans-serif" font-size="10.5" fill="#2b2be6" text-anchor="middle">Lahore, PK</text>
+        <text x="588" y="70" font-family="Inter, sans-serif" font-size="9" fill="#6f6f6f" text-anchor="middle">built here</text>
+      </svg>
+      <div class="map-caption">Delivered fully remote — discovery, build, deploy and hypercare. The compliance gate keeps every dial inside legal TCPA hours for each US timezone, from 4,000 miles away.</div>
+    </div>
   </section>
 
   <section class="block" id="engineering">
@@ -346,6 +408,32 @@
     <div class="row">
       <div class="row-label">Backbone</div>
       <div class="row-value"><p>n8n, Flask, PostgreSQL 16, Docker Compose, Cloudflare Tunnel</p></div>
+    </div>
+  </section>
+
+  <section class="block" id="process">
+    <div class="sec-label">How I Work</div>
+    <div class="rowlist">
+      <div class="item">
+        <div class="num">01</div>
+        <h3>Discovery</h3>
+        <div class="desc">A free call where I learn the workflow you want automated and what it costs you today. This project started exactly there — a questionnaire and three months of the client&rsquo;s real call data.</div>
+      </div>
+      <div class="item">
+        <div class="num">02</div>
+        <h3>Fixed scope &amp; milestones</h3>
+        <div class="desc">A written proposal with exact deliverables, timeline and milestone-based pricing — no open-ended hourly surprises. You know what you&rsquo;re getting before you pay anything.</div>
+      </div>
+      <div class="item">
+        <div class="num">03</div>
+        <h3>Build with weekly demos</h3>
+        <div class="desc">You see the system working every week, not just at the end. Changes are cheap early — that&rsquo;s when we make them.</div>
+      </div>
+      <div class="item">
+        <div class="num">04</div>
+        <h3>Handover that sticks</h3>
+        <div class="desc">Documentation, credentials handover, and a support window after delivery. This system shipped with full ops docs the client&rsquo;s team runs themselves.</div>
+      </div>
     </div>
   </section>
 
@@ -431,12 +519,15 @@
       if (el.classList.contains('bars')) {
         el.querySelectorAll('.bar-fill').forEach((b, i) => setTimeout(() => { b.style.width = b.dataset.w; }, rm ? 0 : i * 150));
       }
+      if (el.id === 'cost-anatomy') {
+        el.querySelectorAll('.cost-seg').forEach((s, i) => setTimeout(() => { s.style.width = s.dataset.w; }, rm ? 0 : i * 130));
+      }
       io.unobserve(el);
     });
   }, { threshold: 0.12 });
 
   targets.forEach(el => io.observe(el));
-  document.querySelectorAll('.diagram, .bars').forEach(el => io.observe(el));
+  document.querySelectorAll('.diagram, .bars, #cost-anatomy').forEach(el => io.observe(el));
 
   /* Simulated call feed */
   const list = document.getElementById('call-log-list');
