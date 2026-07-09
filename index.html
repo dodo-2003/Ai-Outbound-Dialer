@@ -11,12 +11,12 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root {
-    --bg: #f3f2f0;
+    --bg: #ffffff;
     --ink: #1c1c1c;
     --ink-soft: #3d3d3d;
     --ink-mute: #6f6f6f;
     --line: #1c1c1c;
-    --line-soft: #d8d7d4;
+    --line-soft: #e2e2e2;
     --blue: #2b2be6;
   }
   html { scroll-behavior: smooth; }
@@ -121,7 +121,7 @@
     grid-template-columns: 60px 1fr 100px 40px;
     gap: 12px;
     padding: 5px 0;
-    border-bottom: 1px dashed #ececea;
+    border-bottom: 1px dashed #ededed;
     animation: logIn 0.4s ease;
     white-space: nowrap;
   }
@@ -138,7 +138,7 @@
     margin-bottom: 11px;
     font-size: 11.5px; color: var(--ink-soft);
   }
-  .bar-track { background: #e9e8e4; height: 10px; }
+  .bar-track { background: #eeeeee; height: 10px; }
   .bar-fill { height: 100%; width: 0; background: var(--ink); transition: width 1.1s cubic-bezier(0.2, 0.7, 0.2, 1); }
   .bar-fill.blue { background: var(--blue); }
   .bar-val { font-variant-numeric: tabular-nums; text-align: right; }
@@ -250,11 +250,11 @@
     <div>
       <div class="radar">
         <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Radar visualisation of an AI dialing session">
-          <circle cx="100" cy="100" r="90" fill="none" stroke="#e4e3e0" stroke-width="1"/>
-          <circle cx="100" cy="100" r="60" fill="none" stroke="#e4e3e0" stroke-width="1"/>
-          <circle cx="100" cy="100" r="30" fill="none" stroke="#e4e3e0" stroke-width="1"/>
-          <line x1="10" y1="100" x2="190" y2="100" stroke="#e4e3e0" stroke-width="1"/>
-          <line x1="100" y1="10" x2="100" y2="190" stroke="#e4e3e0" stroke-width="1"/>
+          <circle cx="100" cy="100" r="90" fill="none" stroke="#e6e6e6" stroke-width="1"/>
+          <circle cx="100" cy="100" r="60" fill="none" stroke="#e6e6e6" stroke-width="1"/>
+          <circle cx="100" cy="100" r="30" fill="none" stroke="#e6e6e6" stroke-width="1"/>
+          <line x1="10" y1="100" x2="190" y2="100" stroke="#e6e6e6" stroke-width="1"/>
+          <line x1="100" y1="10" x2="100" y2="190" stroke="#e6e6e6" stroke-width="1"/>
           <g class="sweep"><line x1="100" y1="100" x2="100" y2="12" stroke="#1c1c1c" stroke-width="1"/></g>
           <circle class="blip" cx="138" cy="64" r="3.5" fill="#2b2be6" style="animation-delay:.3s"/>
           <circle class="blip" cx="66" cy="88" r="3" fill="#1c1c1c" style="animation-delay:1.5s"/>
@@ -336,16 +336,16 @@
       <div class="cost-bar">
         <div class="cost-seg" data-w="40%" style="background:#1c1c1c" title="Vapi platform $0.05"></div>
         <div class="cost-seg" data-w="32%" style="background:#2b2be6" title="ElevenLabs voice $0.04"></div>
-        <div class="cost-seg" data-w="11%" style="background:#8a8a86" title="Twilio telephony $0.014"></div>
-        <div class="cost-seg" data-w="8.5%" style="background:#b9b8b3" title="Deepgram STT $0.01"></div>
-        <div class="cost-seg" data-w="8.5%" style="background:#d8d7d4" title="Claude reasoning $0.01"></div>
+        <div class="cost-seg" data-w="11%" style="background:#8a8a8a" title="Twilio telephony $0.014"></div>
+        <div class="cost-seg" data-w="8.5%" style="background:#bdbdbd" title="Deepgram STT $0.01"></div>
+        <div class="cost-seg" data-w="8.5%" style="background:#dedede" title="Claude reasoning $0.01"></div>
       </div>
       <div class="cost-legend">
         <span><i style="background:#1c1c1c"></i>Vapi platform — $0.05</span>
         <span><i style="background:#2b2be6"></i>ElevenLabs voice — $0.04</span>
-        <span><i style="background:#8a8a86"></i>Twilio telephony — $0.014</span>
-        <span><i style="background:#b9b8b3"></i>Deepgram STT — $0.01</span>
-        <span><i style="background:#d8d7d4"></i>Claude reasoning — $0.01</span>
+        <span><i style="background:#8a8a8a"></i>Twilio telephony — $0.014</span>
+        <span><i style="background:#bdbdbd"></i>Deepgram STT — $0.01</span>
+        <span><i style="background:#dedede"></i>Claude reasoning — $0.01</span>
       </div>
       <div class="cost-total">Every call&rsquo;s cost is itemized like this in the client&rsquo;s dashboard — ~$0.04 per dial attempt, ~$0.25 per connected call.</div>
     </div>
@@ -356,7 +356,7 @@
     <div class="sec-label">Built Remote, Deployed US</div>
     <div class="map-panel widget">
       <svg viewBox="0 0 660 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Network map — built in Lahore, deployed for a US client">
-        <g stroke="#efeeeb" stroke-width="1">
+        <g stroke="#f1f1f1" stroke-width="1">
           <line x1="80" y1="18" x2="80" y2="202"/><line x1="160" y1="18" x2="160" y2="202"/>
           <line x1="240" y1="18" x2="240" y2="202"/><line x1="320" y1="18" x2="320" y2="202"/>
           <line x1="400" y1="18" x2="400" y2="202"/><line x1="480" y1="18" x2="480" y2="202"/>
